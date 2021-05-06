@@ -1,6 +1,6 @@
 // import '@babel/polyfill'
 import React, { useState, useRef } from 'react'
-import { BrowserRouter, Route, Link } from 'react-router-dom'
+import { HashRouter, Route, Link } from 'react-router-dom'
 import ReactDom from 'react-dom'
 import moment from 'moment'
 import Home from './home'
@@ -27,10 +27,10 @@ function App() {
   }
   return (
     <>
-      {location.pathname.indexOf('/snapshotSample') == -1 ? (
+      {location.hash.indexOf('/snapshotSample') == -1 ? (
         // <Immutable count={count} ref={immutableRef} />
         // <button onClick={changeProps}>changeProps</button>
-        <BrowserRouter>
+        <HashRouter>
           <ul className="ul">
             <Link to={`/`}>Home</Link>
             <Link to={`/game`}>Game</Link>
@@ -41,15 +41,15 @@ function App() {
             <Route path="/list" component={List} />
             <Route path="/" exact component={Home} />
           </div>
-        </BrowserRouter>
+        </HashRouter>
       ) : (
-        <BrowserRouter>
+        <HashRouter>
           <Route path="/snapshotSample" component={SnapshotSample} />
           <Route
             path="/snapshotSampleOptimize"
             component={SnapshotSampleOptimize}
           />
-        </BrowserRouter>
+        </HashRouter>
       )}
     </>
   )
