@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "list.bundle.js",
+  "sources": [
+    "webpack://learn-webpack-optimize/./src/list.js"
+  ],
+  "sourcesContent": [
+    "import React, { useState, useRef } from 'react'\nimport _ from 'lodash'\n\nfunction List() {\n  const initArray = [1, 2, 3, 4, 5]\n  const [array, setArray] = useState(initArray)\n  // 处理翻转数组\n  const handleReverse = () =>\n    setArray((array) => {\n      array.reverse()\n      return [...array]\n    })\n\n  const [value, setValue] = useState('')\n\n  const debouncedSave = useRef(\n    _.debounce((nextValue) => {\n      if (nextValue) {\n        setArray(() => array.filter((item) => item == nextValue))\n      } else {\n        setArray(initArray)\n      }\n    }, 1000)\n  ).current\n\n  const handleChange = (event) => {\n    const { value: nextValue } = event.target\n    setValue(nextValue)\n    debouncedSave(nextValue)\n  }\n\n  return (\n    <>\n      <input value={value} onChange={handleChange} />\n      <button onClick={handleReverse}>翻转</button>\n      {array.map((i) => (\n        <div key={i}>{i}</div>\n      ))}\n    </>\n  )\n}\n\nexport default List\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAA;AACA;AACA;AACA;AACA;AACA;AAAA;AAAA;AAAA;AAAA;AACA;AACA;AAAA;AAAA;AAEA;AACA;AACA;AAJA;AACA;AAKA;AAAA;AAAA;AAAA;AACA;AACA;AAEA;AACA;AAAA;AAAA;AAAA;AAAA;AACA;AACA;AACA;AACA;AACA;AAEA;AACA;AACA;AACA;AACA;AACA;AACA;AAEA;AAAA;AAAA;AACA;AAAA;AACA;AACA;AAAA;AADA;AAKA;AACA;AACA;AACA;A;;A",
+  "sourceRoot": ""
+}
