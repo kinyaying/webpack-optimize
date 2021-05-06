@@ -13,7 +13,7 @@ const PATHS = {
   src: path.join(__dirname, './src'),
 }
 module.exports = smp.wrap({
-  mode: 'development',
+  mode: 'production',
   entry: './src/index.js',
   output: {
     filename: '[name].bundle.js',
